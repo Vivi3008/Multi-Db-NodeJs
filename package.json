@@ -1,0 +1,18 @@
+{
+    "name": "multi-db",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "dependencies": {
+        "pg": "^8.5.1",
+        "pg-hstore": "^2.3.3",
+        "sequelize": "^6.3.5"
+    },
+    "scripts": {
+        "test": "mocha src/tests/*.js",
+        "test:watch": "mocha src/tests/*.js -w"
+    },
+    "devDependencies": {
+        "mocha": "^8.2.1"
+    }
+}
