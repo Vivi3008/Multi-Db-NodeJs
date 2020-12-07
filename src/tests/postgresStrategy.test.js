@@ -4,6 +4,7 @@ const Context = require('./../db/strategies/base/contextStrategy')
 
 
 const context = new Context(new Postgres())
+
 const MOCK_HEROI_CADASTRAR = {
     nome: 'Lanterna Verde',
     poder: 'Anel'

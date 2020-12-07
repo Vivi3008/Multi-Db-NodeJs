@@ -21,8 +21,8 @@ class ICrud {
         throw new NotImplementedException()
     }
 
-    icConnected() {
-
+    connected() {
+        throw new NotImplementedException()
     }
 }
 

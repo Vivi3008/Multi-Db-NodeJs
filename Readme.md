@@ -6,4 +6,4 @@ Estudos do curso  👉  [Curso NodeJs Erick Wendell](https://erickwendel.teachab
 
 - Multi banco de dados utilizando padrão Strategy para escolher entre os bancos Postgres e MongoDb.
 - Docker para instalação dos bancos
-- Testes unitários com [Mocha](https://mochajs.org/)
+- Testes automatizados com [Mocha](https://mochajs.org/)

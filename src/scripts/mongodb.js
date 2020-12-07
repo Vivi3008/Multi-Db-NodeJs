@@ -48,4 +48,6 @@ db.herois.update({ poder: "Velocidade" }, { $set: { poder: "Super Força" } })
 //delete
 //deleta toda a base
 db.herois.remove({})
+
+//deleta um dado específico
 db.herois.remove({ nome: "Lanterna Verde" })

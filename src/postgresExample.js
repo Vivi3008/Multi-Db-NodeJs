@@ -3,8 +3,8 @@ const { Sequelize } = require('sequelize')
 
 const driver = new Sequelize(
     'heroes',
-    'viviramos',
-    'minhasenhasecreta', {
+    process.env.USER_POSTGRES,
+    process.env.PASSWORD_POSTGRES, {
         host: 'localhost',
         dialect: 'postgres',
         quoteIdentifiers: false,
