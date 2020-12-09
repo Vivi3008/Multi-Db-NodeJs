@@ -5,10 +5,10 @@ const dotenv = require('dotenv')
 dotenv.config()
 
 const STATUS = {
-    0: 'Disconnect',
+    0: 'Disconnected',
     1: 'Connected',
     2: 'Connecting',
-    3: 'Disconnected'
+    3: 'Disconnecting'
 }
 
 
@@ -43,6 +43,7 @@ class MongoDb extends ICrud {
         connection.once('open', () => console.log('Database rodando!'))
 
         this._driver = connection
+        this.defineModel()
     }
 
     defineModel() {
@@ -64,13 +65,12 @@ class MongoDb extends ICrud {
         this._herois = Mongoose.model('herois', heroiSchema)
     }
 
-    async create(item) {
-        const resultCadastrar = await model.create({
-            nome: 'Mulher Maravilha',
-            poder: 'Resiliência'
-        })
-        console.log('Cadastrado com sucesso: ', resultCadastrar)
+    create(item) {
+        return this._herois.create(item)
+    }
 
+    async read(item, skip = 0, limit = 10) {
+        return await this._herois.find({ nome: item }).skip(skip).limit(limit)
     }
 }
 
