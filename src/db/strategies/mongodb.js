@@ -72,6 +72,14 @@ class MongoDb extends ICrud {
     async read(item, skip = 0, limit = 10) {
         return await this._herois.find({ nome: item }).skip(skip).limit(limit)
     }
+
+    update(id, item) {
+        return this._herois.updateOne({ _id: id }, { $set: item })
+    }
+
+    delete(id) {
+        return this._herois.deleteOne({ _id: id })
+    }
 }
 
 module.exports = MongoDb
