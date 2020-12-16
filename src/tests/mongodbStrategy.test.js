@@ -1,8 +1,7 @@
 const assert = require('assert')
-const MongoDb = require('./../db/strategies/mongodb')
+const MongoDb = require('./../db/strategies/mongodb/mongodb')
 const Context = require('./../db/strategies/base/contextStrategy')
-
-const context = new Context(new MongoDb())
+const HeroisSchema = require('./../db/strategies/mongodb/schemas/herois')
 
 const MOCK_HEROI_CADASTRAR = {
     nome: 'Super Man',
@@ -16,9 +15,12 @@ const MOCK_HEROI_ATUALIZAR = {
 
 let MOCK_HEROI_ID = null
 
+let context = {}
+
 describe('MongoDb Testes', function() {
     this.beforeAll(async function() {
-        await context.connected()
+        const connection = MongoDb.connected()
+        context = new Context(new MongoDb(connection, HeroisSchema))
         const result = await context.create(MOCK_HEROI_ATUALIZAR)
         MOCK_HEROI_ID = result._id
     })
@@ -44,13 +46,14 @@ describe('MongoDb Testes', function() {
             nome,
             poder
         }
-        console.log(result)
+
         assert.deepStrictEqual(result, MOCK_HEROI_CADASTRAR)
     })
 
     it('Atualizar', async() => {
         const result = await context.update(MOCK_HEROI_ID, {
-            nome: 'Pernalonga'
+            nome: 'Pernalonga',
+            poder: 'Correr'
         })
 
         assert.deepStrictEqual(result.nModified, 1)
