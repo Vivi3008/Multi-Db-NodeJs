@@ -34,7 +34,7 @@ class MongoDb extends ICrud {
     }
 
     static connected() {
-        Mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true }, function(error) {
+        Mongoose.connect('mongodb://admin:senhaadmin@localhost:27017/', { useNewUrlParser: true, useUnifiedTopology: true }, function(error) {
             if (!error) return
             console.log("Falha na conexão! ", error)
         })
@@ -51,7 +51,11 @@ class MongoDb extends ICrud {
     }
 
     async read(item, skip = 0, limit = 10) {
-        return await this._schema.find({ nome: item }).skip(skip).limit(limit)
+        if (!item) {
+            return await this._schema.find()
+        } else {
+            return await this._schema.find({ nome: item }).skip(skip).limit(limit)
+        }
     }
 
     update(id, item) {

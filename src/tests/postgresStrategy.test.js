@@ -15,19 +15,19 @@ const MOCK_HEROI_ATUALIZAR = {
     poder: 'Aracnídeo'
 }
 
-describe('Postgres Strategy', function() {
+describe('Postgres Tests', function() {
     this.timeout(Infinity)
 
     this.beforeAll(async function() {
-            const connection = await Postgres.connected()
-            const model = await Postgres.defineModel(connection, HeroiSchema)
-            context = new Context(new Postgres(connection, model))
+        const connection = await Postgres.connected()
+        const model = await Postgres.defineModel(connection, HeroiSchema)
+        context = new Context(new Postgres(connection, model))
 
-            await context.delete()
-            await context.create(MOCK_HEROI_ATUALIZAR)
+        await context.delete()
+        await context.create(MOCK_HEROI_ATUALIZAR)
+    })
 
-        })
-        //teste de conexão com o bd
+    //teste de conexão com o bd
     it('Postgres Sql Connection', async function() {
         const result = await context.isConnected()
         assert.strictEqual(result, true)

@@ -46,7 +46,7 @@ describe('MongoDb Testes', function() {
             nome,
             poder
         }
-
+        console.log(result)
         assert.deepStrictEqual(result, MOCK_HEROI_CADASTRAR)
     })
 
